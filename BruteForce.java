@@ -39,13 +39,12 @@ public class BruteForce {
 		}
 	}
 
-	public void match(String expect, String type) {
+	public void match(String expect, String type, Pattern p) {
 		String txt;
 		String result;
 
 		for (String s : input) {
-			// Can use a function to add prefix or suffix to each input string
-			txt = s;
+			txt = p.f(s);
 			result = Hash.getHash(txt, type);
 			if (result.equals(expect)) {
 				System.out.println("Success! Plain text is: " + s);
@@ -62,7 +61,10 @@ public class BruteForce {
 		final String expect = "";
 		BruteForce bf = new BruteForce(inputFileName);
 
-		bf.match(expect, type);
+		// change this line to transform each candidate string
+		final Pattern p = s -> s;
+
+		bf.match(expect, type, p);
 	}
 
 }
