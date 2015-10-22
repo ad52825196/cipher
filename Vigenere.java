@@ -3,7 +3,7 @@ import java.util.Collection;
 
 /**
  * This class can encode and decode a string using Vigenere cipher based on a
- * group of keys;
+ * group of keys.
  * 
  * @author Zhen Chen
  *

@@ -1,5 +1,5 @@
 /**
- * This class can encode and decode a string using Caesar cipher based on a key;
+ * This class can encode and decode a string using Caesar cipher based on a key.
  * 
  * @author Zhen Chen
  *
