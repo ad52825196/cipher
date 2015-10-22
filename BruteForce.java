@@ -23,14 +23,17 @@ public class BruteForce {
 
 	public static void main(String[] args) {
 		final String inputFileName = "list.txt";
-		final String type = "MD5";
+
+		// change this line to specify your target string
 		final String expect = "";
+
+		Cipher c = new Hash("MD5");
 		BruteForce bf = new BruteForce(inputFileName);
 
 		// change this line to transform each candidate string
 		final Pattern p = s -> s;
 
-		if (bf.match(expect, type, p)) {
+		if (bf.match(expect, c, p)) {
 			System.out.println("Success! The plain text is: " + bf.result());
 		} else {
 			System.out.println("Failed!");
@@ -74,15 +77,15 @@ public class BruteForce {
 		return result;
 	}
 
-	public boolean match(String expect, String type, Pattern p) {
+	public boolean match(String expect, Cipher cipher, Pattern p) {
 		String txt;
-		String hashString;
+		String cipherTxt;
 
 		for (String s : input) {
 			txt = p.f(s);
-			hashString = Hash.getHash(txt, type);
-			if (hashString.equals(expect)) {
-				result = hashString;
+			cipherTxt = cipher.encode(txt);
+			if (cipherTxt.equals(expect.toLowerCase())) {
+				result = s;
 				return true;
 			}
 		}

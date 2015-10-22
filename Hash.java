@@ -1,9 +1,22 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Hash {
+public class Hash implements Cipher {
+	private String hashType;
+	
+	public Hash(String hashType) {
+		this.hashType = hashType;
+	}
+	
+	public String getHashType() {
+		return hashType;
+	}
+	
+	public void setHashType(String hashType) {
+		this.hashType = hashType;
+	}
 
-	public static String getHash(String txt, String hashType) {
+	public String encode(String txt) {
 		try {
 			MessageDigest md = MessageDigest.getInstance(hashType);
 			byte[] array = md.digest(txt.getBytes());
@@ -18,11 +31,4 @@ public class Hash {
 		return null;
 	}
 
-	public static String md5(String txt) {
-		return Hash.getHash(txt, "MD5");
-	}
-
-	public static String sha1(String txt) {
-		return Hash.getHash(txt, "SHA1");
-	}
 }
