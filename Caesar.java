@@ -8,12 +8,6 @@
 public class Caesar implements Cipher {
 	private int key;
 
-	public static void main(String[] args) {
-		Caesar c = new Caesar(3);
-		System.out.println(c.encode("Go the Blacks!"));
-		System.out.println(encode("Go the Blacks!", 13));
-	}
-
 	public Caesar() {
 		key = 0;
 	}
