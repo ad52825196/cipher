@@ -1,2 +1,2 @@
-# Hash
-To hash each string in a given list using different digest algorithms like md5, sha1, etc.
+# Cipher
+It can encode or decode a list of strings according to a specified cipher algorithm.

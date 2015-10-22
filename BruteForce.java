@@ -4,11 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * This class uses a brute force method to decrypt or decode a given string. It
+ * reads a list of candidate strings from a file and use a user specified method
+ * to transform each of these strings, which may add some fixed content to the
+ * string. Then it will encode each string according to a user specified
+ * encryption or encoding algorithm and compare the result string with the given
+ * string. If they are identical, then the plain text of the given string is
+ * found.
+ * 
+ * @author Zhen Chen
+ *
+ */
+
 public class BruteForce {
 	private List<String> input;
+	private String result;
+
+	public static void main(String[] args) {
+		final String inputFileName = "list.txt";
+		final String type = "MD5";
+		final String expect = "";
+		BruteForce bf = new BruteForce(inputFileName);
+
+		// change this line to transform each candidate string
+		final Pattern p = s -> s;
+
+		if (bf.match(expect, type, p)) {
+			System.out.println("Success! The plain text is: " + bf.result());
+		} else {
+			System.out.println("Failed!");
+		}
+	}
 
 	public BruteForce() {
 		input = new ArrayList<String>();
+		result = "";
 	}
 
 	public BruteForce(final List<Object> list) {
@@ -39,32 +70,24 @@ public class BruteForce {
 		}
 	}
 
-	public void match(String expect, String type, Pattern p) {
+	public String result() {
+		return result;
+	}
+
+	public boolean match(String expect, String type, Pattern p) {
 		String txt;
-		String result;
+		String hashString;
 
 		for (String s : input) {
 			txt = p.f(s);
-			result = Hash.getHash(txt, type);
-			if (result.equals(expect)) {
-				System.out.println("Success! Plain text is: " + s);
-				return;
+			hashString = Hash.getHash(txt, type);
+			if (hashString.equals(expect)) {
+				result = hashString;
+				return true;
 			}
 		}
 
-		System.out.println("Failed!");
-	}
-
-	public static void main(String[] args) {
-		final String inputFileName = "list.txt";
-		final String type = "MD5";
-		final String expect = "";
-		BruteForce bf = new BruteForce(inputFileName);
-
-		// change this line to transform each candidate string
-		final Pattern p = s -> s;
-
-		bf.match(expect, type, p);
+		return false;
 	}
 
 }
