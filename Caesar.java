@@ -50,4 +50,12 @@ public class Caesar implements Cipher {
 		return String.valueOf(buffer);
 	}
 
+	public String decode(String txt) {
+		return decode(txt, key);
+	}
+
+	public static String decode(String txt, int key) {
+		return encode(txt, 26 - key);
+	}
+
 }

@@ -84,4 +84,22 @@ public class Vigenere implements Cipher {
 		return String.valueOf(buffer);
 	}
 
+	public String decode(String txt) {
+		return decode(txt, keyList);
+	}
+
+	public static String decode(String txt, int[] keyList) {
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		for (int i = 0; i < keyList.length; i++) {
+			temp.add(26 - keyList[i]);
+		}
+		return encode(txt, temp);
+	}
+
+	public static String decode(String txt, ArrayList<Integer> keyList) {
+		for (int i = 0; i < keyList.size(); i++) {
+			keyList.set(i, 26 - keyList.get(i));
+		}
+		return encode(txt, keyList);
+	}
 }
