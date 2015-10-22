@@ -1,6 +1,13 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * This class can generate hash strings using different digest algorithms.
+ * 
+ * @author Zhen Chen
+ *
+ */
+
 public class Hash implements Cipher {
 	private String hashType;
 
