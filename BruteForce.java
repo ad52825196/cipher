@@ -22,7 +22,7 @@ public class BruteForce {
 	private String result;
 
 	public static void main(String[] args) {
-		final String inputFileName = "list.txt";
+		final String inputFileName = "dict.txt";
 
 		// change this line to specify your target string
 		final String expect = "";
